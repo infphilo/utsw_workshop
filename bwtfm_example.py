@@ -44,6 +44,7 @@ sa = sorted(sa, cmp=compare_suffixes)
 
 
 # Print the first 100 sorted suffixes
+print "\n"
 for seq_i in sa[:100]:
     suffix = seq[seq_i:seq_i+100]
     if seq_i + 100 > len(seq):
@@ -69,18 +70,13 @@ def align_bwt(F, L, POS, read_seq):
 
         return new_top, new_bot
 
-    def LF_one(F, L, top):
-        nt = L[top]
-        new_top = F[nt] + L[:top].count(nt)
-
-        return new_top
-
     for nt in read_seq[::-1]:
         top, bot = LF(F, L, top, bot, nt)
         assert top < bot
 
     if top < bot:
-        return POS[top]
+        # Take the first one, though there might be multiple locations for the given sequence
+        return POS[top] 
 
     else:
         return -1
@@ -100,9 +96,6 @@ for i in range(0, len(L), 100):
         for nt, count in FM_100[-1].items():
             counts[nt] += count
     FM_100.append(counts)
-
-print FM_100
-
 
 # Perform alignment of reads using BWT/FM index
 def align_bwtfm(F, L, POS, read_seq):
