@@ -2,7 +2,7 @@
 import sys
 from datetime import datetime, date, time
 
-def selectSort(numbers, begin, end):
+def selectSort(numbers):
     for i in xrange(begin, end):
         minIndex = i
         for j in xrange(i+1, end):
@@ -11,22 +11,25 @@ def selectSort(numbers, begin, end):
         numbers[i], numbers[minIndex] = numbers[minIndex], numbers[i]
 
 
-def mergeSort(numbers, begin, end, temp):
-    None
+def checkSorted(numbers):
+    for i in xrange(0, len(numbers) - 1):
+        if numbers[i] > numbers[i+1]:
+            return False
+    return True
 
 
 if __name__ == "__main__":
     sanity_check = True
     
-    max_num = 1000000
+    max_num = 100000
 
-    numbers = 1:maxnum
+    numbers = range(0, max_num)
     numbers = numbers[::-1]
 
     print "sorting starts."
     start = datetime.now()
     
-    selectSort(numbers, 0, len(numbers))
+    selectSort(numbers)
 
     print "sorting ends."
     stop = datetime.now()
@@ -41,4 +44,3 @@ if __name__ == "__main__":
         else:
             print "Error: numbers are not sorted."
             
-
