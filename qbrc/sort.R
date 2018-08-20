@@ -28,7 +28,7 @@ checkSorted <- function(numbers) {
 
 sanity_check <- TRUE
 
-max_num <- 1000
+max_num <- 100000
 
 numbers <- (max_num-1):0
 
