@@ -26,9 +26,7 @@ checkSorted <- function(numbers) {
    return(TRUE)
 }
 
-sanity_check <- TRUE
-
-max_num <- 100000
+max_num <- 20000
 
 numbers <- (max_num-1):0
 
@@ -36,18 +34,15 @@ print("sorting starts.")
 tic()
 
 numbers <- selectSort(numbers)
+# numbers <- sort(numbers)
 
 print("sorting ends.")
 toc()
 
-# print(stop - start)
-
-if(sanity_check) {
-   passed <- checkSorted(numbers)
-   if(passed) {
-      print("Correctly sorted.")
-   } else {
-      print("Error: numbers are not sorted.")
-   }
+passed <- checkSorted(numbers)
+if(passed) {
+   print("Correctly sorted.")
+} else {
+   print("Error: numbers are not sorted.")
 }
 

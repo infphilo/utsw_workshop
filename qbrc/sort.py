@@ -3,9 +3,9 @@ import sys
 from datetime import datetime, date, time
 
 def selectSort(numbers):
-    for i in xrange(begin, end):
+    for i in xrange(len(numbers)):
         minIndex = i
-        for j in xrange(i+1, end):
+        for j in xrange(i+1, len(numbers)):
             if numbers[j] < numbers[minIndex]:
                 minIndex = j
         numbers[i], numbers[minIndex] = numbers[minIndex], numbers[i]
@@ -19,9 +19,7 @@ def checkSorted(numbers):
 
 
 if __name__ == "__main__":
-    sanity_check = True
-    
-    max_num = 100000
+    max_num = 1000000
 
     numbers = range(0, max_num)
     numbers = numbers[::-1]
@@ -29,7 +27,8 @@ if __name__ == "__main__":
     print "sorting starts."
     start = datetime.now()
     
-    selectSort(numbers)
+    # selectSort(numbers)
+    numbers = sorted(numbers)
 
     print "sorting ends."
     stop = datetime.now()
@@ -37,10 +36,9 @@ if __name__ == "__main__":
     duration = (stop - start).total_seconds()
     print "duration:", duration, "seconds"
 
-    if sanity_check:
-        passed = checkSorted(numbers)
-        if passed:
-            print "Correctly sorted."
-        else:
-            print "Error: numbers are not sorted."
+    passed = checkSorted(numbers)
+    if passed:
+        print "Correctly sorted."
+    else:
+        print "Error: numbers are not sorted."
             
